@@ -1,0 +1,22 @@
+- name: MySQLをインストールする
+  apt:
+    pkg:   '{{ item }}'
+    state: installed
+  with_items:
+    - mysql-server
+    - mysql-client
+    - libmysqlclient-dev
+
+- name: MySQLの設定ファイルを更新する
+  template:
+    src:  my.cnf
+    dest: /etc/mysql/my.cnf
+
+- name: ib_logfilesを削除する
+  # http://app.road.jp.net/?p=1423
+  shell: rm -rf /var/lib/mysql/ib_logfile*
+
+- name: MySQLを再起動する
+  service:
+    name:  mysql
+    state: restarted

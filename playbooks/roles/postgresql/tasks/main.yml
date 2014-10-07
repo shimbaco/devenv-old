@@ -1,0 +1,25 @@
+- name: PostgreSQLをインストールする
+  apt:
+    name:  postgresql
+    state: present
+
+- name: PostgreSQLの設定を更新する
+  template:
+    src:   postgresql.conf.j2
+    dest:  /etc/postgresql/9.3/main/postgresql.conf
+    owner: postgres
+    group: postgres
+    mode:  0644
+
+- name: pg_hba.confを更新する
+  template:
+    src:   pg_hba.conf.j2
+    dest:  /etc/postgresql/9.3/main/pg_hba.conf
+    owner: postgres
+    group: postgres
+    mode:  0640
+
+- name: PostgreSQLを再起動する
+  service:
+    name:  postgresql
+    state: restarted

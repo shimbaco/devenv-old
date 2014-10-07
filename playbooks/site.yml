@@ -1,0 +1,15 @@
+---
+- hosts: all
+  user:  root
+  roles:
+    - apt
+    - zsh
+    - dotfiles
+    - ntp
+    - swap_file
+    - imagemagick
+    - ruby
+    - nodejs
+    - mysql
+    - postgresql
+    - redis

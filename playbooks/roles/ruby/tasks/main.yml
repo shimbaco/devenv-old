@@ -1,0 +1,69 @@
+- name: rbenvをダウンロードする
+  git:
+    repo:           git://github.com/sstephenson/rbenv.git
+    accept_hostkey: yes
+    dest:           /usr/local/rbenv
+    version:        v0.4.0
+
+- name: 実行ファイルのシンボリックリンクを作成する
+  file:
+    path:  /usr/local/bin/rbenv
+    src:   /usr/local/rbenv/bin/rbenv
+    state: link
+
+- name: 初期化スクリプトを配置する
+  template:
+    src:   rbenv.sh.j2
+    dest:  /etc/profile.d/rbenv.sh
+    owner: root
+    group: root
+    mode:  0755
+
+- name: ruby-buildがインストールされているか確認する
+  command:       test -x /usr/local/bin/ruby-build
+  register:      rbuild_present
+  ignore_errors: yes
+
+- name: 一時ディレクトリを作成する
+  command:  mktemp -d
+  register: tempdir
+  when:     rbuild_present|failed
+
+- name: ruby-buildをダウンロードする
+  git:
+    repo: git://github.com/sstephenson/ruby-build.git
+    dest: '{{ tempdir.stdout }}/ruby-build'
+  when: rbuild_present|failed
+
+- name: ruby-buildをインストールする
+  command: ./install.sh chdir={{ tempdir.stdout }}/ruby-build
+  when:    rbuild_present|failed
+
+- name: 一時ディレクトリを削除する
+  file:
+    path:  '{{ tempdir.stdout }}'
+    state: absent
+  when: rbuild_present|failed
+
+- name: Rubyがインストールされているか確認する
+  shell:         RBENV_ROOT=/usr/local/rbenv rbenv versions | grep {{ ruby_version }}
+  register:      ruby_installed
+  ignore_errors: yes
+
+- name: Rubyをインストールする
+  shell: RBENV_ROOT=/usr/local/rbenv rbenv install {{ ruby_version }}
+  when:  ruby_installed|failed
+
+- name: Ruby {{ruby_version}}をシステム全体で使用する
+  shell: RBENV_ROOT=/usr/local/rbenv rbenv global {{ ruby_version }}
+  when:  ruby_installed|failed
+
+- name: rehash
+  shell: RBENV_ROOT=/usr/local/rbenv rbenv rehash
+  when:  ruby_installed|failed
+
+- name: Bundlerをインストールする
+  shell: RBENV_ROOT=/usr/local/rbenv rbenv exec gem install bundle --no-ri --no-rdoc
+
+- name: Foremanをインストールする
+  shell: RBENV_ROOT=/usr/local/rbenv rbenv exec gem install foreman --no-ri --no-rdoc

@@ -1,0 +1,9 @@
+- name: Zshをインストールする
+  apt:
+    name:  zsh
+    state: present
+
+- name: rootユーザが使用するシェルをzshにする
+  user:
+    name:  root
+    shell: /bin/zsh

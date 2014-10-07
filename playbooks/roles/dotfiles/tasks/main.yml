@@ -1,0 +1,8 @@
+- name: ~/dev/dotfiles/install.rb が存在するか確かめる
+  stat:
+    path:     ~/dev/dotfiles/install.rb
+    register: st
+
+- name: dotfilesのシンボリックリンクを張る
+  shell: ~/dev/dotfiles/install.rb
+  when:  st.stat.exists == true

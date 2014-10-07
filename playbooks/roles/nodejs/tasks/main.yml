@@ -1,0 +1,4 @@
+- name: Node.jsをインストールする
+  apt:
+    name:  nodejs
+    state: present
