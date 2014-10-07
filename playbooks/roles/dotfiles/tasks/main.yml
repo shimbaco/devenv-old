@@ -3,6 +3,11 @@
     path: ~/dev/dotfiles/install.rb
   register: st
 
+- name: install.rb が存在しないときはGitHubからdotfilesを持ってくる
+  git:
+    repo: git@github.com:bojovs/dotfiles.git
+    dest: ~/dev/dotfiles
+  when: st.stat.exists == False
+
 - name: dotfilesのシンボリックリンクを張る
   shell: ~/dev/dotfiles/install.rb
-  when:  st.stat.exists == true
