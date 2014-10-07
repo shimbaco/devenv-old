@@ -1,5 +1,7 @@
 # devenv
 
+[![Stories in Ready](https://badge.waffle.io/bojovs/devenv.svg?label=ready&title=Ready)](http://waffle.io/bojovs/devenv)
+
 Vagrant + Ansibleで作られた開発環境です。
 
 
