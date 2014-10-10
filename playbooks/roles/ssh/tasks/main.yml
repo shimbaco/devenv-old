@@ -1,0 +1,16 @@
+- name: GitHub用のSSH秘密鍵を転送する
+  copy:
+    src:  ~/.ssh/github
+    dest: /root/.ssh/
+    mode: 0600
+
+- name: configファイルの素を設置する
+  copy:
+    src:  ~/.ssh/config.d
+    dest: /root/.ssh/
+
+- name: 一時的にconfigファイルを設置する
+  # GitHubからdotfilesを持ってくるため
+  template:
+    src:  config
+    dest: /root/.ssh/

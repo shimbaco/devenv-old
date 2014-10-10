@@ -3,13 +3,14 @@
   user:  root
   roles:
     - apt
+    - ssh
     - zsh
     - dotfiles
-    # - ntp
-    # - swap_file
-    # - imagemagick
-    # - ruby
-    # - nodejs
-    # - mysql
-    # - postgresql
-    # - redis
+    - ntp
+    - swap_file
+    - imagemagick
+    - ruby
+    - nodejs
+    - mysql
+    - postgresql
+    - redis
