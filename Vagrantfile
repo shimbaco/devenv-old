@@ -9,6 +9,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.network 'private_network', ip: '192.168.33.10'
 
+  config.vm.provider 'virtualbox' do |v|
+    v.memory = 1024
+    v.cpus = 2
+  end
+
   # nfs: trueで画像の読み込みなど速くなった
   # http://dev.akinaka.net/2014/01/14/vagrant-synced-folder-nfs-setting
   config.vm.synced_folder '~/dev', '/root/dev', nfs: true
