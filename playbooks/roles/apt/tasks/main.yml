@@ -22,3 +22,4 @@
     - vim
     - wget
     - phantomjs
+    - golang

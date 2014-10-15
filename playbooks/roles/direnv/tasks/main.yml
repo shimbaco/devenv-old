@@ -1,0 +1,8 @@
+- name: ソースコードをGitHubから持ってくる
+  git:
+    repo:           git@github.com:zimbatm/direnv.git
+    dest:           ~/dev/_others/direnv
+    accept_hostkey: yes
+
+- name: インスタンスする
+  shell: cd ~/dev/_others/direnv; make install

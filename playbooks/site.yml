@@ -6,11 +6,12 @@
     - ssh
     - zsh
     - dotfiles
-    - ntp
-    - swap_file
-    - imagemagick
-    - ruby
-    - nodejs
-    - mysql
-    - postgresql
-    - redis
+    - direnv
+    # - ntp
+    # - swap_file
+    # - imagemagick
+    # - ruby
+    # - nodejs
+    # - mysql
+    # - postgresql
+    # - redis
