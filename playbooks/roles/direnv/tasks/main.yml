@@ -4,5 +4,5 @@
     dest:           ~/dev/_others/direnv
     accept_hostkey: yes
 
-- name: インスタンスする
+- name: インストールする
   shell: cd ~/dev/_others/direnv; make install

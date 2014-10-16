@@ -7,11 +7,11 @@
     - zsh
     - dotfiles
     - direnv
-    # - ntp
-    # - swap_file
-    # - imagemagick
-    # - ruby
-    # - nodejs
-    # - mysql
-    # - postgresql
-    # - redis
+    - ntp
+    - swap_file
+    - imagemagick
+    - ruby
+    - nodejs
+    - mysql
+    - postgresql
+    - redis
