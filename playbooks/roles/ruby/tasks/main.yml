@@ -54,7 +54,7 @@
   shell: RBENV_ROOT=/usr/local/rbenv rbenv install {{ ruby_version }}
   when:  ruby_installed|failed
 
-- name: Ruby {{ruby_version}}をシステム全体で使用する
+- name: インストールしたRubyをシステム全体で使用する
   shell: RBENV_ROOT=/usr/local/rbenv rbenv global {{ ruby_version }}
   when:  ruby_installed|failed
 
