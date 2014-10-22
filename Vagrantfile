@@ -1,9 +1,5 @@
 VAGRANTFILE_API_VERSION = '2'
 
-# puts 'Dropboxに置いている .zsh_history を参照できるようにする'
-# FileUtils.mkdir_p("#{ENV['HOME']}/dev/_backup/dotfiles")
-# FileUtils.ln_sf("#{ENV['HOME']}/Dropbox/backup/dotfiles/.zsh_history", "#{ENV['HOME']}/dev/_backup/dotfiles/.zsh_history")
-
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
 
@@ -15,6 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.synced_folder '~/dev', '/root/dev', type: 'rsync', rsync__exclude: ['.git/']
+  config.vm.synced_folder '~/Dropbox/devenv', '/root/dropbox', type: 'rsync'
 
   # `vagrant ssh` したとき `root` でログインする
   config.ssh.username = 'root'
