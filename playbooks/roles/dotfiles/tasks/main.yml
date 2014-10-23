@@ -1,14 +1,20 @@
-- name: ~/dev/dotfiles/install.rb が存在するか確かめる
-  stat:
-    path: ~/dev/dotfiles/install.rb
-  register: st
-
-- name: install.rb が存在しないときはGitHubからdotfilesを持ってくる
-  git:
-    repo:           git@github.com:bojovs/dotfiles.git
-    dest:           ~/dev/dotfiles
-    accept_hostkey: yes
-  when: st.stat.exists == False
-
-- name: dotfilesのシンボリックリンクを張る
-  shell: ~/dev/dotfiles/install.rb
+- name: 設定ファイルを配置する
+  copy:
+    src:  ~/dev/devenv/dotfiles/{{ item }}
+    dest: /root/{{ item }}
+  with_items:
+    - .ackrc
+    - .aliases
+    - .ctags
+    - .gemrc
+    - .gvimrc
+    - .pryrc
+    - .railsrc
+    - .spring.rb
+    - .tmux.conf
+    - .vim
+    - .vimrc
+    - .zlogin
+    - .zsh
+    - .zshrc
+    - bin
