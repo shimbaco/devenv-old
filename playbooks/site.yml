@@ -3,15 +3,15 @@
   user:  root
   roles:
     - apt
-    - ssh
     - zsh
     - dotfiles
-    - direnv
-    - ntp
-    - swap_file
-    - imagemagick
-    - ruby
-    - nodejs
-    - mysql
-    - postgresql
-    - redis
+    - dropbox
+    # - direnv
+    # - ntp
+    # - swap_file
+    # - imagemagick
+    # - ruby
+    # - nodejs
+    # - mysql
+    # - postgresql
+    # - redis

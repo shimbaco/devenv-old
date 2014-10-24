@@ -1,0 +1,28 @@
+- name: CLIスクリプトをダウンロードする
+  get_url:
+    dest: /root/bin/dropbox.py
+    url:  https://www.dropbox.com/download?dl=packages/dropbox.py
+    mode: 0755
+
+- name: インストールする
+  shell: curl -L "https://www.dropbox.com/download?plat=lnx.x86_64" | tar -C $HOME -xzf -
+  args:
+    creates: /root/.dropbox-dist/dropboxd
+
+- name: 起動用スクリプトを配置する
+  template:
+    src:  dropbox
+    dest: /etc/init.d/dropbox
+    mode: 0755
+
+- name: サービス登録する
+  service:
+    name: dropbox
+
+- name: 起動状態を確認する
+  command: /root/bin/dropbox.py status
+  register: status
+
+- name: 起動する
+  shell: /root/bin/dropbox.py start >/dev/null 2>&1
+  when: status.stdout == "Dropbox isn't running!"
