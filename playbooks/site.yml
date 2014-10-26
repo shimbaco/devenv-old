@@ -3,7 +3,6 @@
   user:  root
   roles:
     - apt
-    - ssh
     - zsh
     - dotfiles
     - direnv
