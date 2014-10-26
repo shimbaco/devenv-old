@@ -1,7 +1,9 @@
 - name: PostgreSQLをインストールする
   apt:
-    name:  postgresql
-    state: present
+    pkg:   '{{ item }}'
+  with_items:
+    - postgresql
+    - libpq-dev
 
 - name: PostgreSQLの設定を更新する
   template:
