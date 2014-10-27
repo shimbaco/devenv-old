@@ -15,9 +15,8 @@
     dest: /etc/init.d/dropbox
     mode: 0755
 
-- name: サービス登録する
-  service:
-    name: dropbox
+- name: サーバ起動時にDropboxが起動するようにする
+  command: update-rc.d dropbox defaults
 
 - name: 起動状態を確認する
   command: /root/bin/dropbox.py status

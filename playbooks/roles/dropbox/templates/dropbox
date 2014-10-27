@@ -1,38 +1,22 @@
 #!/bin/sh
 # dropbox service
 # Replace with linux users you want to run Dropbox clients for
-DROPBOX_USERS="root"
 
-DAEMON=.dropbox-dist/dropbox
+VERSION=`cat /root/.dropbox-dist/VERSION`
+DAEMON=/root/.dropbox-dist/dropbox-lnx.x86_64-$VERSION/dropbox
+
 start() {
   echo "Starting dropbox..."
-  for dbuser in $DROPBOX_USERS; do
-  HOMEDIR=`getent passwd $dbuser | cut -d: -f6`
-  if [ -x $HOMEDIR/$DAEMON ]; then
-  HOME="$HOMEDIR" start-stop-daemon -b -o -c $dbuser -S -u $dbuser -x $HOMEDIR/$DAEMON
+  if [ -x $DAEMON ]; then
+  HOME=/root start-stop-daemon -b -o -c root -S -u root -x $DAEMON
   fi
-  done
 }
 
 stop() {
   echo "Stopping dropbox..."
-  for dbuser in $DROPBOX_USERS; do
-  HOMEDIR=`getent passwd $dbuser | cut -d: -f6`
-  if [ -x $HOMEDIR/$DAEMON ]; then
-  start-stop-daemon -o -c $dbuser -K -u $dbuser -x $HOMEDIR/$DAEMON
+  if [ -x $DAEMON ]; then
+  start-stop-daemon -o -c root -K -u root -x $DAEMON
   fi
-  done
-}
-
-status() {
-  for dbuser in $DROPBOX_USERS; do
-  dbpid=`pgrep -u $dbuser dropbox`
-  if [ -z $dbpid ] ; then
-  echo "dropboxd for USER $dbuser: not running."
-  else
-  echo "dropboxd for USER $dbuser: running (pid $dbpid)"
-  fi
-  done
 }
 
 case "$1" in
@@ -46,11 +30,8 @@ case "$1" in
   stop
   start
   ;;
-  status)
-  status
-  ;;
   *)
-  echo "Usage: /etc/init.d/dropbox {start|stop|reload|force-reload|restart|status}"
+  echo "Usage: /etc/init.d/dropbox {start|stop|reload|force-reload|restart}"
   exit 1
   esac
 
