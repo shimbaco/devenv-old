@@ -1,0 +1,11 @@
+# This is the configuration file for /etc/init.d/btsync
+#
+# Start only these btsync instances automatically via
+# init script.
+
+AUTOSTART=""
+
+# Optional arguments to btsync's command line. Be careful!
+# You should only add thngs here if you know EXACTLY what
+# you are doing!
+DAEMON_ARGS=""

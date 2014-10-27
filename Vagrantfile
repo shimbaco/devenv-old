@@ -11,7 +11,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.synced_folder '~/dev', '/root/dev', type: 'rsync', rsync__exclude: ['.git/']
-  config.vm.synced_folder '~/Dropbox/devenv', '/root/dropbox', type: 'rsync'
 
   # `vagrant ssh` したとき `root` でログインする
   config.ssh.username = 'root'

@@ -1,0 +1,32 @@
+- name: リポジトリを追加する
+  apt_repository:
+    repo: 'ppa:tuxpoldo/btsync'
+
+- name: apt-get update
+  apt:
+    update_cache: yes
+
+- name: インストールする
+  apt:
+    name: btsync
+
+- name: 同期用のディレクトリを作成する
+  file:
+    path:  /root/btsync
+    state: directory
+    mode:  0700
+
+- name: 設定ファイルを配置する
+  template:
+    src:  conf
+    dest: /etc/btsync/.conf
+    mode: 0600
+  notify: restart btsync
+
+- name: Configure btsync server
+  template:
+    src=etc_default_btsync.j2
+    dest=/etc/default/btsync
+    group=root
+    owner=root
+  notify: restart btsync

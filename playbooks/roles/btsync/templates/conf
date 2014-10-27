@@ -1,0 +1,15 @@
+{
+  "device_name": "{{ ansible_hostname }}",
+  "storage_path": "/root/.btsync",
+  "listening_port": 12589,
+  "check_for_updates": false,
+  "use_upnp": false,
+  "download_limit": 0,
+  "upload_limit": 0,
+  "disk_low_priority": true,
+  "lan_encrypt_data": true,
+  "lan_use_tcp": false,
+  "rate_limit_local_peers": false,
+  "folder_rescan_interval": 600,
+  "shared_folders": "/root/btsync"
+}
