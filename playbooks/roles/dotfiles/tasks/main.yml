@@ -12,9 +12,9 @@
     - .railsrc
     - .spring.rb
     - .tmux.conf
-    - .vim
+    - .vim/
     - .vimrc
     - .zlogin
-    - .zsh
+    - .zsh/
     - .zshrc
-    - bin
+    - bin/
