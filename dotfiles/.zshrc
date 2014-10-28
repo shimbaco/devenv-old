@@ -4,10 +4,6 @@ export LC_ALL='ja_JP.UTF-8' # aws s3 syncするときこれがないと死ぬ
 export PATH=./bin:~/bin:/usr/local/bin:/usr/local/share/npm/bin:/usr/local/share/python:$GOPATH:$PATH
 export GOPATH=$HOME/dev/golang
 
-# RVM
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # rbenv
 eval "$(rbenv init -)"
 
