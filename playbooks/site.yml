@@ -5,6 +5,7 @@
     - apt
     - zsh
     - dotfiles
+    - ssh
     - direnv
     - ntp
     - swap_file
