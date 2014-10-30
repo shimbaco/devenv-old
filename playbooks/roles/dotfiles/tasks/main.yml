@@ -18,3 +18,8 @@
     - .zsh/
     - .zshrc
     - bin/
+
+- name: sshmに実行権限を与える
+  file:
+    path: ~/bin/sshm
+    mode: 0755
