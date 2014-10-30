@@ -2,3 +2,8 @@
   apt:
     name:  nodejs
     state: present
+
+- name: npmをインストールする
+  apt:
+    name:  npm
+    state: present
