@@ -1,9 +1,10 @@
-- name: Node.jsをインストールする
+- name: Node.js関連のパッケージをインストールする
   apt:
-    name:  nodejs
+    pkg:   '{{ item }}'
     state: present
-
-- name: npmをインストールする
-  apt:
-    name:  npm
-    state: present
+  with_items:
+    - nodejs
+    # /usr/bin/node でNode.jsを動かすためにインストールする
+    # http://plaidzooks.tumblr.com/post/36894116867/using-node-js-on-debian-ubuntu-systems
+    - nodejs-legacy
+    - npm
