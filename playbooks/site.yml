@@ -2,6 +2,7 @@
 - hosts: all
   user:  root
   roles:
+    - basic
     - apt
     - zsh
     - dotfiles
