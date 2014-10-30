@@ -16,3 +16,4 @@
     - mysql
     - postgresql
     - redis
+    - heroku
