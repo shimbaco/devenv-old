@@ -2,70 +2,40 @@
   git:
     repo:           git://github.com/sstephenson/rbenv.git
     accept_hostkey: yes
-    dest:           /usr/local/rbenv
-    version:        v0.4.0
-
-- name: 実行ファイルのシンボリックリンクを作成する
-  file:
-    path:  /usr/local/bin/rbenv
-    src:   /usr/local/rbenv/bin/rbenv
-    state: link
-
-- name: 初期化スクリプトを配置する
-  template:
-    src:   rbenv.sh.j2
-    dest:  /etc/profile.d/rbenv.sh
-    owner: root
-    group: root
-    mode:  0755
+    dest:           /root/.rbenv
 
 - name: ruby-buildがインストールされているか確認する
-  command:       test -x /usr/local/bin/ruby-build
+  command:       test -x /root/.rbenv/plugins/ruby-build
   register:      rbuild_present
   ignore_errors: yes
-
-- name: 一時ディレクトリを作成する
-  command:  mktemp -d
-  register: tempdir
-  when:     rbuild_present|failed
 
 - name: ruby-buildをダウンロードする
   git:
     repo: git://github.com/sstephenson/ruby-build.git
-    dest: '{{ tempdir.stdout }}/ruby-build'
-  when: rbuild_present|failed
-
-- name: ruby-buildをインストールする
-  command: ./install.sh chdir={{ tempdir.stdout }}/ruby-build
-  when:    rbuild_present|failed
-
-- name: 一時ディレクトリを削除する
-  file:
-    path:  '{{ tempdir.stdout }}'
-    state: absent
+    dest: /root/.rbenv/plugins/ruby-build
   when: rbuild_present|failed
 
 - name: Rubyがインストールされているか確認する
-  shell:         RBENV_ROOT=/usr/local/rbenv rbenv versions | grep {{ ruby_version }}
+  shell:         /root/.rbenv/bin/rbenv versions | grep {{ ruby_version }}
   register:      ruby_installed
   ignore_errors: yes
 
 - name: Rubyをインストールする
   # readline周りでRubyのインストールに失敗するため、パッチを当てつつインストールする
   # https://github.com/sstephenson/rbenv/issues/599
-  shell: RBENV_ROOT=/usr/local/rbenv curl -fsSL https://gist.github.com/mislav/a18b9d7f0dc5b9efc162.txt | rbenv install --patch {{ ruby_version }}
+  shell: /root/.rbenv/bin/rbenv install {{ ruby_version }}
   when:  ruby_installed|failed
 
 - name: インストールしたRubyをシステム全体で使用する
-  shell: RBENV_ROOT=/usr/local/rbenv rbenv global {{ ruby_version }}
+  shell: /root/.rbenv/bin/rbenv global {{ ruby_version }}
   when:  ruby_installed|failed
 
 - name: rehash
-  shell: RBENV_ROOT=/usr/local/rbenv rbenv rehash
+  shell: /root/.rbenv/bin/rbenv rehash
   when:  ruby_installed|failed
 
 - name: Bundlerをインストールする
-  shell: RBENV_ROOT=/usr/local/rbenv rbenv exec gem install bundle --no-ri --no-rdoc
+  shell: /root/.rbenv/bin/rbenv exec gem install bundle --no-ri --no-rdoc
 
 - name: Foremanをインストールする
-  shell: RBENV_ROOT=/usr/local/rbenv rbenv exec gem install foreman --no-ri --no-rdoc
+  shell: /root/.rbenv/bin/rbenv exec gem install foreman --no-ri --no-rdoc
