@@ -24,3 +24,4 @@
     - phantomjs
     - golang
     - libreadline-dev # RubyでPryを使用するときに必要になる
+    - pwgen # ランダム文字列生成
