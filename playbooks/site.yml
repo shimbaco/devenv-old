@@ -6,6 +6,7 @@
     - apt
     - zsh
     - dotfiles
+    - vim
     - ssh
     - direnv
     - ntp

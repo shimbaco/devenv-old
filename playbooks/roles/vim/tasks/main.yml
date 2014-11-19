@@ -1,0 +1,38 @@
+- name: Vimのインストールに必要なパッケージをインストールする
+  apt:
+    pkg: '{{ item }}'
+  with_items:
+    - liblua5.2-dev
+    - libncurses5-dev
+    - lua5.2
+    - luajit
+
+- name: Vimがインストールされているか確認する
+  command:       test -x /usr/local/bin/vim
+  register:      vim_present
+  ignore_errors: yes
+
+- name: VimのソースコードをGitHubから持ってくる
+  git:
+    repo:           git@github.com:vim-jp/vim.git
+    dest:           /root/tmp
+    accept_hostkey: yes
+  when: vim_present|failed
+
+- name: Vimをインストールする
+  shell: '{{ item }} chdir=/root/tmp'
+  with_items:
+    - ./configure --with-features=huge --enable-multibyte --enable-luainterp
+    - make
+    - make install
+    - ln -fs /usr/local/bin/vim /usr/bin/vi
+  when:  vim_present|failed
+
+- name: NeoBundleがインストールされているか確認する
+  command:       test -x /root/.vim/bundle/neobundle.vim
+  register:      neobundle_present
+  ignore_errors: yes
+
+- name: NeoBundleをインストールする
+  shell: curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+  when:  neobundle_present|failed

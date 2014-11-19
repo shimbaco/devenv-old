@@ -85,7 +85,7 @@ set splitbelow
 
 
 " Macのoptionキーをマッピングキーとして使用できるようにする
-set macmeta
+"set macmeta
 
 
 " ノーマルモードではカーソルをBoxタイプに
@@ -164,7 +164,7 @@ map <M-]> <ESC>;bn<CR>
 map <M-Backspace> <ESC>;bnext \| bdelete #<CR>
 
 " command+shift+fでAckで検索する
-map <D-F> <ESC>;Ack 
+map <D-F> <ESC>;Ack
 
 " jjで:w
 noremap jj <Esc>:w<CR>
@@ -240,30 +240,24 @@ let Tlist_Show_One_File = 1
 nnoremap tl :<C-u>Tlist<CR>
 
 
-" vimproc
-" -------------------------------------------------------
-
-let g:vimproc#dll_path=expand('~/repos/dotfiles/.vim/bundle/vimproc/autoload/vimproc_mac.so')
-
-
 " vim-tags
 " -------------------------------------------------------
 
-let g:vim_tags_project_tags_command = "/usr/local/Cellar/ctags/5.8/bin/ctags -R {OPTIONS} {DIRECTORY} 2>/dev/null"
-let g:vim_tags_gems_tags_command = "/usr/local/Cellar/ctags/5.8/bin/ctags -R {OPTIONS} `bundle show --paths` 2>/dev/null"
+"let g:vim_tags_project_tags_command = "/usr/local/Cellar/ctags/5.8/bin/ctags -R {OPTIONS} {DIRECTORY} 2>/dev/null"
+"let g:vim_tags_gems_tags_command = "/usr/local/Cellar/ctags/5.8/bin/ctags -R {OPTIONS} `bundle show --paths` 2>/dev/null"
 
 
-" Vundle
+" NeoBundle
 " -------------------------------------------------------
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
- 
+
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'nono/vim-handlebars'
@@ -288,17 +282,19 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'gmarik/vundle'
 
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-    \ 'windows' : 'make -f make_mingw32.mak',
-    \ 'cygwin' : 'make -f make_cygwin.mak',
-    \ 'mac' : 'make -f make_mac.mak',
-    \ 'unix' : 'make -f make_unix.mak',
-  \ },
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake'
+\    }
 \ }
 
-NeoBundleCheck
+call neobundle#end()
 
 " 編集するファイルの種類を自動判別し、それに応じた便利な設定やインデントが行われるようにする
 filetype plugin indent on
 
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
