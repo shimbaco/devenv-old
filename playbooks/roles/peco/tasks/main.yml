@@ -1,0 +1,4 @@
+- name: インストールする
+  shell: go get github.com/peco/peco/cmd/peco
+  environment:
+    GOPATH: /root/dev/golang
