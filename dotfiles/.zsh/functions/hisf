@@ -11,7 +11,7 @@ function hisf() {
         eval $tac | \
         peco --query "$LBUFFER")
     CURSOR=$#BUFFER
-    
-    echo $BUFFER
+
+    print -s $BUFFER # 選択したコマンドをヒストリに追加する
     eval $BUFFER
 }
