@@ -1,8 +1,14 @@
+- name: rbenvがインストールされているか確認する
+  command:       test -x /root/.rbenv
+  register:      rbenv_present
+  ignore_errors: yes
+
 - name: rbenvをダウンロードする
   git:
     repo:           git://github.com/sstephenson/rbenv.git
     accept_hostkey: yes
     dest:           /root/.rbenv
+  when: rbenv_present|failed
 
 - name: ruby-buildがインストールされているか確認する
   command:       test -x /root/.rbenv/plugins/ruby-build
