@@ -25,3 +25,7 @@
     - golang
     - libreadline-dev # RubyでPryを使用するときに必要になる
     - pwgen # ランダム文字列生成
+    - libxslt-dev # Nokogiri 1.5.5をインストールするときに必要になる
+    - libxml2-dev # Nokogiri 1.5.5をインストールするときに必要になる
+    - sqlite3 # sqlite3 gemをインストールするときに必要になる
+    - libsqlite3-dev # sqlite3 gemをインストールするときに必要になる
