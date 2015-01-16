@@ -67,6 +67,7 @@ alias pr='powder restart'
 
 alias rc='rails c'
 alias rdc='rake db:create'
+alias rdi='rake db:import'
 alias rdm='rake db:migrate'
 alias rdmr='rake db:migrate:reset'
 alias rdmt='rake db:migrate RAILS_ENV=test'
