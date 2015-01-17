@@ -81,12 +81,12 @@ alias rr='rake routes'
 alias rrir='rake ridgepole:reset'
 alias rria='rake ridgepole:apply'
 alias rriad='rake ridgepole:apply:dry-run'
-alias rs='rails s'
-alias rs1='rails s -p 3001'
-alias rs2='rails s -p 3002'
-alias rs3='rails s -p 3003'
-alias rs4='rails s -p 3004'
-alias rs5='rails s -p 3005'
+alias rs='rails s -b 0.0.0.0'
+alias rs1='rails s -p 3001 -b 0.0.0.0'
+alias rs2='rails s -p 3002 -b 0.0.0.0'
+alias rs3='rails s -p 3003 -b 0.0.0.0'
+alias rs4='rails s -p 3004 -b 0.0.0.0'
+alias rs5='rails s -p 3005 -b 0.0.0.0'
 
 # pecoでsshするalias
 # http://qiita.com/d6rkaiz/items/46e9c61c412c89e84c38
