@@ -1,4 +1,7 @@
-- name: imagemagickをインストールする
+- name: ImageMagickとその関連パッケージをインストールする
   apt:
-    name:  imagemagick
-    state: present
+    pkg:   '{{ item }}'
+    state: installed
+  with_items:
+    - imagemagick
+    - libmagickwand-dev # RMagickをインストールするときに必要
