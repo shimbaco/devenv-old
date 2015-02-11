@@ -19,3 +19,5 @@
     - redis
     - heroku
     - peco
+    - python
+    - ansible
