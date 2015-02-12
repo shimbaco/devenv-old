@@ -1,0 +1,7 @@
+- name: Python関連のパッケージをインストールする
+  apt:
+    pkg:   '{{ item }}'
+    state: installed
+  with_items:
+    - python-dev
+    - python-pip
