@@ -27,8 +27,6 @@
   ignore_errors: yes
 
 - name: Rubyをインストールする
-  # readline周りでRubyのインストールに失敗するため、パッチを当てつつインストールする
-  # https://github.com/sstephenson/rbenv/issues/599
   shell: /root/.rbenv/bin/rbenv install {{ ruby_version }}
   when:  ruby_installed|failed
 
