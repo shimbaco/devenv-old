@@ -31,3 +31,4 @@
     - libsqlite3-dev # sqlite3 gemをインストールするときに必要
     - libffi-dev # Ruby 2.2をインストールするときに必要
     - ctags
+    - libmagick++-dev # node-imagemagick-nativeを使用するときに必要
