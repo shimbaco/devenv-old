@@ -1,0 +1,5 @@
+- name: Apacheをインストールする
+  apt:
+    pkg: '{{ item }}'
+  with_items:
+    - apache2
