@@ -6,8 +6,8 @@
     - apt
     - zsh
     - dotfiles
-    - vim
     - ssh
+    - vim
     - direnv
     - ntp
     - swap_file
