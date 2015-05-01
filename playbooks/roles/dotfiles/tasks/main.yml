@@ -19,7 +19,22 @@
     - .zshrc
     - bin/
 
-- name: sshmに実行権限を与える
+- name: .zshrc内にホストOSのホスト名を埋め込む
+  lineinfile:
+    dest:   /root/.zshrc
+    regexp: '^\%\{EXPORT_HOST_HOME\}'
+    line:   "export HOST_HOME={{ lookup('env', 'HOME') }}"
+
+- name: .zshrc内にホストOSのユーザ名を埋め込む
+  lineinfile:
+    dest:   /root/.zshrc
+    regexp: '^\%\{EXPORT_HOST_USER\}'
+    line:   "export HOST_USER={{ lookup('env', 'USER') }}"
+
+- name: ~/bin以下のコマンドに実行権限を与える
   file:
-    path: ~/bin/sshm
+    path: ~/bin/{{ item }}
     mode: 0755
+  with_items:
+    - bo
+    - sshm
