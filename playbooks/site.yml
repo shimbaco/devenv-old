@@ -2,22 +2,22 @@
 - hosts: all
   user:  root
   roles:
-    - basic
-    - apt
-    - zsh
+    # - basic
+    # - apt
+    # - zsh
     - dotfiles
-    - ssh
-    - vim
-    - direnv
-    - ntp
-    - swap_file
-    - imagemagick
-    - ruby
-    - nodejs
-    - mysql
-    - postgresql
-    - redis
-    - heroku
-    - peco
-    - python
-    - ansible
+    # - ssh
+    # - vim
+    # - direnv
+    # - ntp
+    # - swap_file
+    # - imagemagick
+    # - ruby
+    # - nodejs
+    # - mysql
+    # - postgresql
+    # - redis
+    # - heroku
+    # - peco
+    # - python
+    # - ansible

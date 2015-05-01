@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+require 'bundler/cli'
+require 'bundler/cli/common'
+
+path = Bundler::CLI::Common.select_spec('devise', :regex_match).full_gem_path
+
+host_path = path.sub('/root', ENV['HOST_HOME'])
+# http://stackoverflow.com/questions/19917148/tell-vagrant-the-ip-of-the-host-machine
+host_ip = `netstat -rn | grep "^0.0.0.0 " | cut -d " " -f10`
+host_user = ENV['HOST_USER']
+
+`ssh #{host_user}@#{host_ip} atom #{host_path}`
