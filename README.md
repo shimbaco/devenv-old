@@ -1,4 +1,16 @@
-# devenv
+# devenv-old
+
+## もう使ってません
+
+以前はVagrantで動かしていたUbuntuの中に開発環境を作ってましたが、
+以下の出来事があったので再びMacで開発環境を作ることにしました。
+
+* `bundle open` が使えない
+* 「gulp-watch」や「nodemon」を使うとき、ファイルの変更が検知されない
+
+新しいdevenv: https://github.com/shimbaco/devenv
+
+---
 
 [![Stories in Ready](https://badge.waffle.io/bojovs/devenv.svg?label=ready&title=Ready)](http://waffle.io/bojovs/devenv)
 
