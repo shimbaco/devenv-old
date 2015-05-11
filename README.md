@@ -12,7 +12,7 @@
 
 ---
 
-[![Stories in Ready](https://badge.waffle.io/bojovs/devenv.svg?label=ready&title=Ready)](http://waffle.io/bojovs/devenv)
+[![Stories in Ready](https://badge.waffle.io/shimbaco/devenv.svg?label=ready&title=Ready)](http://waffle.io/shimbaco/devenv)
 
 Vagrant + Ansibleで作られた開発環境です。
 
@@ -33,7 +33,7 @@ Vagrant + Ansibleで作られた開発環境です。
 
 ```
 $ mkdir ~/dev // ゲストOSとのディレクトリ共有に使用
-$ git clone git@github.com:bojovs/devenv.git
+$ git clone git@github.com:shimbaco/devenv.git
 $ cd devenv
 $ vagrant up
 ```
@@ -56,4 +56,4 @@ $ vagrant reload
 
 ## TODO
 
-[Waffle.io](https://waffle.io/bojovs/devenv) で管理してます。
+[Waffle.io](https://waffle.io/shimbaco/devenv) で管理してます。
